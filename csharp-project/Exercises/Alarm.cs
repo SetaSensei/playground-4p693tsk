@@ -7,17 +7,10 @@ namespace Answer
     public class AlarmTest
     {
         [TestMethod]
-        public void ShouldNeverRing()
+        public void ShouldAlwaysRing4Times()
         {
             var alarm = new Alarm();
-            Assert.AreEqual(string.Empty, alarm.Check());
-        }
-
-        [TestMethod]
-        public void ShouldAlwaysRing()
-        {
-            var alarm = new Alarm();
-            Assert.AreEqual("Ring ring ring ring ring !", alarm.Check());
+            Assert.AreEqual("Ring ring ring ring !", alarm.Check());
         }
 
     }
@@ -26,7 +19,10 @@ namespace Answer
     {
         public string Check()
         {
-            if (Clock.GetClock().GetStatus() == 4) return "Ring ring ring ring ring !";
+            if (Clock.GetClock().GetStatus() == 4) return "Ring ring ring ring !";
+            if (Clock.GetClock().GetStatus() == 3) return "Ring ring ring !";
+            if (Clock.GetClock().GetStatus() == 2) return "Ring ring !";
+            if (Clock.GetClock().GetStatus() == 1) return "Ring !";
             return string.Empty;
         }
     }
@@ -48,7 +44,7 @@ namespace Answer
         {
             if (DateTime.Now.Millisecond % 5 == 0)
                 return 5;
-            if (DateTime.Now.Millisecond % 2 == 0)
+            if (DateTime.Now.Millisecond % 4 == 0)
                 return 4;
 
             return 0;
