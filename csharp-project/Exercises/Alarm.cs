@@ -1,12 +1,33 @@
 ﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Answer
 {
+    [TestClass]
+    public class AlarmTest
+    {
+        [TestMethod]
+        public void ShouldNeverRing()
+        {
+            var alarm = new Alarm();
+            Assert.AreEqual(string.Empty, alarm.Check());
+        }
+
+        [TestMethod]
+        public void ShouldAlwaysRing()
+        {
+            var alarm = new Alarm();
+            Assert.AreEqual("Ring ring ring ring ring !", alarm.Check());
+        }
+
+    }
+
     public class Alarm
     {
-        public void Check()
+        public string Check()
         {
-            if (Clock.GetClock().GetStatus() == 4) Console.WriteLine("Ring ring ring ring ring !");
+            if (Clock.GetClock().GetStatus() == 4) return "Ring ring ring ring ring !";
+            return string.Empty;
         }
     }
 
