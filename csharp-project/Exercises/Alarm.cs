@@ -48,10 +48,8 @@ namespace Answer
         {
             if (DateTime.Now.Millisecond % 5 == 0)
                 return 5;
-            if (DateTime.Now.Millisecond % 4 == 0)
+            if (DateTime.Now.Millisecond % 2 == 0)
                 return 4;
-            if (DateTime.Now.Millisecond % 3 == 0)
-                return 3;
 
             return 0;
         }
